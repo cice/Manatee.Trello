@@ -9,5 +9,10 @@ namespace Manatee.Trello
 	{
 		internal UnknownPowerUp(IJsonPowerUp json, TrelloAuthorization auth)
 			: base(json, auth) {}
+
+		public override string ToString()
+		{
+			return $"{Name} ({Id})";
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Manatee.Trello.CustomFields;
+using Manatee.Trello.GitHub;
 using Manatee.Trello.ManateeJson;
 using Manatee.Trello.WebApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,8 +16,13 @@ namespace Manatee.Trello.Test
 		{
 			Run(() =>
 				{
+					var board = new Board(TrelloIds.BoardId);
+					Console.WriteLine(board.GitHubSettings());
 					var card = new Card(TrelloIds.CardId);
-					OutputCollection("fields", card.CustomFields());
+					Console.WriteLine(card.GitHubAttachments());
+					OutputCollection("powerups", board.PowerUps);
+					OutputCollection("board powerup data", board.PowerUpData);
+					OutputCollection("card powerup data", card.PowerUpData);
 				});
 		}
 

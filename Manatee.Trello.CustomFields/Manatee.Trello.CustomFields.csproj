@@ -144,7 +144,6 @@
     <Compile Include="CustomFieldsPowerUp.cs" />
     <Compile Include="CustomFieldsSettings.cs" />
     <Compile Include="FieldType.cs" />
-    <Compile Include="PowerUpCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

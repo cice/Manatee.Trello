@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerUps", "PowerUps", "{1A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Trello.CustomFields", "Manatee.Trello.CustomFields\Manatee.Trello.CustomFields.csproj", "{BC9E4815-D9EA-403B-B7A9-5993FB282DDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manatee.Trello.GitHub", "Manatee.Trello.GitHub\Manatee.Trello.GitHub.csproj", "{0159901D-F69F-492E-A44C-0580DA0B61E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,22 @@ Global
 		{BC9E4815-D9EA-403B-B7A9-5993FB282DDC}.Release-4.5|Any CPU.Build.0 = Release-4.5|Any CPU
 		{BC9E4815-D9EA-403B-B7A9-5993FB282DDC}.Release-Mono|Any CPU.ActiveCfg = Release-Mono|Any CPU
 		{BC9E4815-D9EA-403B-B7A9-5993FB282DDC}.Release-Mono|Any CPU.Build.0 = Release-Mono|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-3.5|Any CPU.Build.0 = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-3.5C|Any CPU.ActiveCfg = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-3.5C|Any CPU.Build.0 = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-4.0|Any CPU.Build.0 = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-4.0C|Any CPU.ActiveCfg = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-4.0C|Any CPU.Build.0 = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-4.5|Any CPU.ActiveCfg = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-4.5|Any CPU.Build.0 = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-Mono|Any CPU.ActiveCfg = Release|Any CPU
+		{0159901D-F69F-492E-A44C-0580DA0B61E4}.Release-Mono|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,6 +201,7 @@ Global
 		{72E58F10-11AA-4ABF-852D-CE2030A21C22} = {29C1914C-949C-4B23-BC09-94D0843D0B1B}
 		{16E45782-2D76-4878-8E51-33DF0D8927DE} = {29C1914C-949C-4B23-BC09-94D0843D0B1B}
 		{BC9E4815-D9EA-403B-B7A9-5993FB282DDC} = {1A311328-1FF7-421E-95D9-05B3984AD683}
+		{0159901D-F69F-492E-A44C-0580DA0B61E4} = {1A311328-1FF7-421E-95D9-05B3984AD683}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Manatee.Trello\Manatee.Trello.csproj

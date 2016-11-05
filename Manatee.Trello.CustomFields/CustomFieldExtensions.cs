@@ -20,7 +20,7 @@ namespace Manatee.Trello.CustomFields
 		public static CustomFieldsSettings CustomFieldsSettings(this Board board)
 		{
 			CustomFieldsPowerUp.Register();
-			var data = board.PowerUpData.FirstOrDefault(d => d.PluginId == CustomFieldsPowerUp.PluginId);
+			var data = board.PowerUpData.FirstOrDefault(d => d.PluginId == CustomFieldsPowerUp.PowerUpId);
 			if (data == null) return null;
 
 			var json = JsonValue.Parse(data.Value);
@@ -36,21 +36,21 @@ namespace Manatee.Trello.CustomFields
 		public static IEnumerable<CustomFieldData> CustomFields(this Card card)
 		{
 			CustomFieldsPowerUp.Register();
-			var data = card.PowerUpData.FirstOrDefault(d => d.PluginId == CustomFieldsPowerUp.PluginId);
+			var data = card.PowerUpData.FirstOrDefault(d => d.PluginId == CustomFieldsPowerUp.PowerUpId);
 			if (data == null) return null;
 
 			// This will return null if the power-up isn't registered.
-			var powerUp = card.Board.TryGetPowerUp();
+			var powerUp = TrelloConfiguration.Cache.Find<CustomFieldsPowerUp>(p => p.Id == CustomFieldsPowerUp.PowerUpId);
 			if (powerUp == null) return null;
 
 			var json = JsonValue.Parse(data.Value);
-			var fieldData = json.Object.TryGetObject("fields").Select(d => new CustomFieldData
-				                                                          {
-					                                                          Id = d.Key,
-					                                                          Value = d.Value.Type == JsonValueType.String
-						                                                                  ? d.Value.String
-						                                                                  : d.Value.ToString()
-				                                                          });
+			var fieldData = json.Object.TryGetObject("fields")?.Select(d => new CustomFieldData
+				                                                           {
+					                                                           Id = d.Key,
+					                                                           Value = d.Value.Type == JsonValueType.String
+						                                                                   ? d.Value.String
+						                                                                   : d.Value.ToString()
+				                                                           });
 			var fieldSettings = card.Board.CustomFieldsSettings();
 
 			fieldData = fieldSettings.Fields.Join(fieldData,

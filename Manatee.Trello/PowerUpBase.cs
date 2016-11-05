@@ -48,6 +48,8 @@ namespace Manatee.Trello
 			_additionalInfo = new Field<string>(_context, nameof(AdditionalInfo));
 			_name = new Field<string>(_context, nameof(Name));
 			_public = new Field<bool?>(_context, nameof(Public));
+
+			TrelloConfiguration.Cache.Add(this);
 		}
 	}
 }

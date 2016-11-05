@@ -29,5 +29,10 @@ namespace Manatee.Trello
 			_pluginId = new Field<string>(_context, nameof(PluginId));
 			_value = new Field<string>(_context, nameof(Value));
 		}
+
+		public override string ToString()
+		{
+			return $"{PluginId} - {Value}";
+		}
 	}
 }

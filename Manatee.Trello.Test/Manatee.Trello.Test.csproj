@@ -130,6 +130,10 @@
       <Project>{BC9E4815-D9EA-403B-B7A9-5993FB282DDC}</Project>
       <Name>Manatee.Trello.CustomFields</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Manatee.Trello.GitHub\Manatee.Trello.GitHub.csproj">
+      <Project>{0159901d-f69f-492e-a44c-0580da0b61e4}</Project>
+      <Name>Manatee.Trello.GitHub</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Manatee.Trello.ManateeJson\Manatee.Trello.ManateeJson.csproj">
       <Project>{fb07603f-bd9b-4cbb-8142-47666c5d88cf}</Project>
       <Name>Manatee.Trello.ManateeJson</Name>

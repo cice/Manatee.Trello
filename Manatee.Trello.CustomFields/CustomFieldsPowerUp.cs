@@ -7,7 +7,7 @@ namespace Manatee.Trello.CustomFields
 	/// </summary>
 	public class CustomFieldsPowerUp : PowerUpBase
 	{
-		internal const string PluginId = "56d5e249a98895a9797bebb9";
+		internal const string PowerUpId = "56d5e249a98895a9797bebb9";
 
 		private static bool _isRegistered;
 
@@ -19,7 +19,7 @@ namespace Manatee.Trello.CustomFields
 			if (!_isRegistered)
 			{
 				_isRegistered = true;
-				TrelloConfiguration.RegisterPowerUp(PluginId, (j, a) => new CustomFieldsPowerUp(j, a));
+				TrelloConfiguration.RegisterPowerUp(PowerUpId, (j, a) => new CustomFieldsPowerUp(j, a));
 			}
 		}
 	}
