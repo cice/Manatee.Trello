@@ -1,17 +1,31 @@
-﻿using Manatee.Json;
-using Manatee.Json.Serialization;
+﻿using System.Text.RegularExpressions;
 
 namespace Manatee.Trello.GitHub
 {
-	public class GitHubPullRequest : IJsonSerializable
+	public class GitHubPullRequest
 	{
-		void IJsonSerializable.FromJson(JsonValue json, JsonSerializer serializer)
+		private static readonly Regex Pattern = new Regex(@"^https:\/\/github\.com\/(?<user>[a-z0-9_.-]+)\/(?<repo>[a-z0-9_.-]+)\/pull\/(?<id>[0-9]+)", RegexOptions.IgnoreCase);
+
+		public int Id { get; }
+		public string Name { get; }
+		public string Repository { get; }
+		public string User { get; }
+		public string Url { get; set; }
+
+		internal GitHubPullRequest(Attachment a)
 		{
-			throw new System.NotImplementedException();
+			Name = a.Name;
+			Url = a.Url;
+
+			var match = Pattern.Match(a.Url);
+			Id = int.Parse(match.Groups["id"].Value);
+			Repository = match.Groups["repo"].Value;
+			User = match.Groups["user"].Value;
 		}
-		JsonValue IJsonSerializable.ToJson(JsonSerializer serializer)
+
+		internal static bool IsMatch(Attachment attachment)
 		{
-			throw new System.NotImplementedException();
+			return Pattern.IsMatch(attachment.Url);
 		}
 	}
 }

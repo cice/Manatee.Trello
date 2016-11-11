@@ -1,17 +1,29 @@
-﻿using Manatee.Json;
-using Manatee.Json.Serialization;
+﻿using System.Text.RegularExpressions;
 
 namespace Manatee.Trello.GitHub
 {
-	public class GitHubBranch : IJsonSerializable
+	public class GitHubBranch
 	{
-		void IJsonSerializable.FromJson(JsonValue json, JsonSerializer serializer)
+		private static readonly Regex Pattern = new Regex(@"^https:\/\/github\.com\/(?<user>[a-z0-9_.-]+)\/(?<repo>[a-z0-9_.-]+)\/tree\/", RegexOptions.IgnoreCase);
+
+		public string Name { get; }
+		public string Repository { get; }
+		public string User { get; }
+		public string Url { get; set; }
+
+		internal GitHubBranch(Attachment a)
 		{
-			throw new System.NotImplementedException();
+			Name = a.Name;
+			Url = a.Url;
+
+			var match = Pattern.Match(a.Url);
+			Repository = match.Groups["repo"].Value;
+			User = match.Groups["user"].Value;
 		}
-		JsonValue IJsonSerializable.ToJson(JsonSerializer serializer)
+
+		internal static bool IsMatch(Attachment attachment)
 		{
-			throw new System.NotImplementedException();
+			return Pattern.IsMatch(attachment.Url);
 		}
 	}
 }

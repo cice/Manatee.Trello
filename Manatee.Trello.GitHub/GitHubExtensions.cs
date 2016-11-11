@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Manatee.Json;
 using Manatee.Json.Serialization;
 
@@ -17,7 +18,7 @@ namespace Manatee.Trello.GitHub
 		/// </summary>
 		/// <param name="board">The board.</param>
 		/// <returns>The repositories.</returns>
-		public static IEnumerable<GitHubRepository> GitHubSettings(this Board board)
+		public static IEnumerable<GitHubRepository> GitHubRepositories(this Board board)
 		{
 			GitHubPowerUp.Register();
 			var data = board.PowerUpData.FirstOrDefault(d => d.PluginId == GitHubPowerUp.PowerUpId);
@@ -36,17 +37,30 @@ namespace Manatee.Trello.GitHub
 		public static GitHubAttachmentCollection GitHubAttachments(this Card card)
 		{
 			GitHubPowerUp.Register();
-			var data = card.PowerUpData.FirstOrDefault(d => d.PluginId == GitHubPowerUp.PowerUpId);
-			if (data == null) return null;
 
-			// This will return null if the power-up isn't registered.
-			var powerUp = TrelloConfiguration.Cache.Find<GitHubPowerUp>(p => p.Id == GitHubPowerUp.PowerUpId);
-			if (powerUp == null) return null;
+			var allAttachments = card.Attachments.ToList();
+			var issues = allAttachments.Where(GitHubIssue.IsMatch)
+			                           .Select(a => new GitHubIssue(a));
+			var commits = allAttachments.Where(GitHubCommit.IsMatch)
+			                            .Select(a => new GitHubCommit(a));
+			var pullRequests = allAttachments.Where(GitHubPullRequest.IsMatch)
+			                                 .Select(a => new GitHubPullRequest(a));
+			var branches = allAttachments.Where(GitHubBranch.IsMatch)
+			                             .Select(a => new GitHubBranch(a));
 
-			var json = JsonValue.Parse(data.Value);
-			var attachments = Serializer.Deserialize<GitHubAttachmentCollection>(json);
+			return new GitHubAttachmentCollection
+				{
+					Branches = branches,
+					Commits = commits,
+					Issues = issues,
+					PullRequests = pullRequests
+				};
+		}
 
-			return attachments;
+		private static bool IsGitHubItem(Attachment attachment, Regex pattern)
+		{
+			var url = attachment.Url;
+			return pattern.IsMatch(url);
 		}
 	}
 }

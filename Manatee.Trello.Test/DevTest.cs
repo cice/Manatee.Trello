@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Manatee.Trello.CustomFields;
+using System.Linq;
 using Manatee.Trello.GitHub;
 using Manatee.Trello.ManateeJson;
 using Manatee.Trello.WebApi;
@@ -17,12 +17,13 @@ namespace Manatee.Trello.Test
 			Run(() =>
 				{
 					var board = new Board(TrelloIds.BoardId);
-					Console.WriteLine(board.GitHubSettings());
+					OutputCollection("Repositories", board.GitHubRepositories().Select(r => r.Name));
 					var card = new Card(TrelloIds.CardId);
-					Console.WriteLine(card.GitHubAttachments());
-					OutputCollection("powerups", board.PowerUps);
-					OutputCollection("board powerup data", board.PowerUpData);
-					OutputCollection("card powerup data", card.PowerUpData);
+					var github = card.GitHubAttachments();
+					OutputCollection("Pull Requests", github.PullRequests.Select(a => a.Url));
+					OutputCollection("Branches", github.Branches.Select(a => a.Url));
+					OutputCollection("Commits", github.Commits.Select(a => a.Url));
+					OutputCollection("Issues", github.Issues.Select(a => a.Url));
 				});
 		}
 
@@ -45,7 +46,7 @@ namespace Manatee.Trello.Test
 		private static void OutputCollection<T>(string section, IEnumerable<T> collection)
 		{
 			Console.WriteLine();
-			Console.WriteLine(section);
+			Console.WriteLine($"{section} ({collection.Count()})");
 			foreach (var item in collection)
 			{
 				Console.WriteLine($"    {item}");

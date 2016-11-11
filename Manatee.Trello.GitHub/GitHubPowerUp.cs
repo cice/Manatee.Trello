@@ -8,7 +8,7 @@ namespace Manatee.Trello.GitHub
 
 		private static bool _isRegistered;
 
-		internal GitHubPowerUp(IJsonPowerUp json, TrelloAuthorization auth)
+		private GitHubPowerUp(IJsonPowerUp json, TrelloAuthorization auth)
 			: base(json, auth) {}
 
 		internal static void Register()
