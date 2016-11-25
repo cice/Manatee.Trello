@@ -21,6 +21,7 @@ namespace Manatee.Trello.GitHub
 		public static IEnumerable<GitHubRepository> GitHubRepositories(this Board board)
 		{
 			GitHubPowerUp.Register();
+
 			var data = board.PowerUpData.FirstOrDefault(d => d.PluginId == GitHubPowerUp.PowerUpId);
 			if (data == null) return null;
 
@@ -29,6 +30,7 @@ namespace Manatee.Trello.GitHub
 			return settings.Repositories;
 		}
 
+		// TODO: convert to an extension on ReadOnlyAttachmentCollection, filtering through IsGitHubItem().
 		/// <summary>
 		/// Gets the items which have been linked to the card.
 		/// </summary>
@@ -57,10 +59,12 @@ namespace Manatee.Trello.GitHub
 				};
 		}
 
-		private static bool IsGitHubItem(Attachment attachment, Regex pattern)
+		public static bool IsGitHubItem(this Attachment attachment)
 		{
-			var url = attachment.Url;
-			return pattern.IsMatch(url);
+			return GitHubIssue.IsMatch(attachment) ||
+			       GitHubPullRequest.IsMatch(attachment) ||
+			       GitHubCommit.IsMatch(attachment) ||
+			       GitHubBranch.IsMatch(attachment);
 		}
 	}
 }
