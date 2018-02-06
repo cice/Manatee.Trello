@@ -22,7 +22,7 @@ namespace Manatee.Trello.FunctionalTests
 			}
 			finally
 			{
-				//board?.Delete();
+				board?.Delete();
 			}
 		}
 	}
