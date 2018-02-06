@@ -15,14 +15,14 @@ namespace Manatee.Trello.FunctionalTests
 		[Test]
 		public void Run()
 		{
-			Board board;
+			Board board = null;
 			try
 			{
 				board = Member.Me.Boards.Add($"TestBoard{Guid.NewGuid()}");
 			}
 			finally
 			{
-				board?.Delete();
+				//board?.Delete();
 			}
 		}
 	}
