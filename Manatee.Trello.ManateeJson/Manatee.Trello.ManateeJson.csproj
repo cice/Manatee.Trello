@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3</TargetFrameworks>
-    <Version>2.1.0</Version>
+    <Version>2.3.0</Version>
     <Description>JSON serialization implementation supported by Manatee.Json.</Description>
     <Copyright>Copyright © 2017 Little Crab Solutions</Copyright>
     <Company>Little Crab Solutions</Company>
@@ -25,6 +25,8 @@ Updated to NetStandard2.0</PackageReleaseNotes>
 
   <PropertyGroup>
     <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <FileVersion>2.3.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Manatee.Json" Version="9.6.0" />

@@ -21,9 +21,9 @@ v2.0.0
 BREAKING CHANGE: Frameworks below 4.6.1 are no longer supported.
 Updated to NetStandard1.3</PackageReleaseNotes>
     <PackageTags>trello rest manatee</PackageTags>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.2.0</FileVersion>
-    <Version>2.0.2</Version>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <FileVersion>2.3.0.0</FileVersion>
+    <Version>2.3.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
